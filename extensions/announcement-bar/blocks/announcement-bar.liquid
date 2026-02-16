@@ -1,0 +1,95 @@
+{% assign raw = shop.metafields.scheduled_bar.settings.value %}
+
+{% if raw != blank %}
+  {% assign bars = raw | parse_json %}
+  {% assign now = 'now' | date: "%s" %}
+
+  {% for bar in bars %}
+
+    {% assign start = bar.startDate | date: "%s" %}
+    {% assign end = bar.endDate | date: "%s" %}
+
+    {% if bar.enabled and now >= start and now <= end %}
+
+      <div 
+        id="announcement-{{ bar.id }}"
+        data-id="{{ bar.id }}"
+        data-version="{{ bar.updatedAt }}"
+        class="scheduled-announcement"
+        style="
+          background-color: {{ bar.backgroundColor }};
+          color: {{ bar.textColor }};
+          padding: 12px 40px 12px 12px;
+          text-align: center;
+          font-weight: 600;
+          position: relative;
+        "
+      >
+
+        {{ bar.text }}
+
+        {% if bar.dismissible %}
+          <button 
+            onclick="dismissAnnouncement('{{ bar.id }}','{{ bar.updatedAt }}')"
+            style="
+              position:absolute;
+              right:12px;
+              top:50%;
+              transform:translateY(-50%);
+              background:none;
+              border:none;
+              font-size:18px;
+              cursor:pointer;
+              color:inherit;
+            "
+          >
+            ×
+          </button>
+        {% endif %}
+
+      </div>
+
+    {% endif %}
+
+  {% endfor %}
+{% endif %}
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(".scheduled-announcement").forEach(function(el){
+
+    var id = el.getAttribute("data-id");
+    var version = el.getAttribute("data-version");
+
+    var storedVersion = localStorage.getItem("announcement_" + id);
+
+    // 🔥 Hide only if same version was dismissed
+    if (storedVersion && storedVersion === version) {
+      el.style.display = "none";
+    }
+
+  });
+
+});
+
+function dismissAnnouncement(id, version) {
+
+  // store version instead of boolean
+  localStorage.setItem("announcement_" + id, version);
+
+  var el = document.getElementById("announcement-" + id);
+  if (el) el.style.display = "none";
+
+}
+</script>
+
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "target": "section",
+  "settings": []
+}
+{% endschema %}
