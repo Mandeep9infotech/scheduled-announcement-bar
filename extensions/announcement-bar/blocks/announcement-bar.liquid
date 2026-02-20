@@ -1,6 +1,7 @@
 {% assign raw = shop.metafields.scheduled_bar.settings.value %}
 
 {% if raw != blank %}
+  {% assign bars = raw | parse_json %}
   {% assign now = 'now' | date: "%s" %}
 
   {% for bar in bars %}
