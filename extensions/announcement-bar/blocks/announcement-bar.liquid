@@ -1,13 +1,16 @@
-{% assign bars = shop.metafields.scheduled_bar.settings.value %}
+{% assign raw = shop.metafields.scheduled_bar.settings.value %}
 
-{% if bars != blank %}
+{% if raw != blank %}
+  {% assign bars = raw | parse_json %}
   {% assign now = 'now' | date: "%s" %}
 
   {% for bar in bars %}
+
     {% assign start = bar.startDate | date: "%s" %}
     {% assign end = bar.endDate | date: "%s" %}
 
     {% if bar.enabled and now >= start and now <= end %}
+
       <div 
         id="announcement-{{ bar.id }}"
         data-id="{{ bar.id }}"
@@ -22,6 +25,7 @@
           position: relative;
         "
       >
+
         {{ bar.text }}
 
         {% if bar.dismissible %}
@@ -42,32 +46,45 @@
             ×
           </button>
         {% endif %}
-      </div>
-    {% endif %}
-  {% endfor %}
 
-{% else %}
-  <!-- DEBUG: bars is blank -->
+      </div>
+
+    {% endif %}
+
+  {% endfor %}
 {% endif %}
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
   document.querySelectorAll(".scheduled-announcement").forEach(function(el){
+
     var id = el.getAttribute("data-id");
     var version = el.getAttribute("data-version");
+
     var storedVersion = localStorage.getItem("announcement_" + id);
+
+    // 🔥 Hide only if same version was dismissed
     if (storedVersion && storedVersion === version) {
       el.style.display = "none";
     }
+
   });
+
 });
 
 function dismissAnnouncement(id, version) {
+
+  // store version instead of boolean
   localStorage.setItem("announcement_" + id, version);
+
   var el = document.getElementById("announcement-" + id);
   if (el) el.style.display = "none";
+
 }
 </script>
+
 
 {% schema %}
 {
