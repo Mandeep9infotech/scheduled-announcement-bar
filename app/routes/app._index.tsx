@@ -28,8 +28,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (!raw) {
     const { redirect } = await import("react-router");
     const url = new URL(request.url);
-    const host = url.searchParams.get("host");
-    throw redirect(`/app/onboarding?host=${host}`);
+    throw redirect(`/app/onboarding?${url.searchParams.toString()}`);
   }
 
   return {
