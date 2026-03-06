@@ -25,6 +25,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const json = await response.json();
   const raw = json.data.shop.metafield?.value;
 
+  if (!raw) {
+    const { redirect } = await import("react-router");
+    throw redirect("/app/onboarding");
+  }
+
   return {
     bars: parseBars(raw),
   };

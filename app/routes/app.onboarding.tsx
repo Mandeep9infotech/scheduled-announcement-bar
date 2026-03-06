@@ -31,7 +31,7 @@ export default function Onboarding() {
       <div>
         <h3>Step 4 - Schedule Announcements</h3>
         <p>Come back here to create and schedule your announcements!</p>
-        <a href="/app" style={{ display: "inline-block", background: "#f0f0f0", color: "#333", padding: "10px 20px", borderRadius: "8px", textDecoration: "none" }}>Go to Dashboard</a>
+        <a href="apps/scheduled-bar-v2/app" style={{ display: "inline-block", background: "#f0f0f0", color: "#333", padding: "10px 20px", borderRadius: "8px", textDecoration: "none" }}>Go to Dashboard</a>
       </div>
     </div>
   );

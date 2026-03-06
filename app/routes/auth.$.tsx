@@ -4,9 +4,9 @@ import { authenticate } from "../shopify.server";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { redirect } = await import("react-router");
   await authenticate.admin(request);
-  throw redirect("/app/onboarding");
+
+  return null;
 };
 
 export const headers: HeadersFunction = (headersArgs) => {
