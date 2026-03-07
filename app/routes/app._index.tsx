@@ -284,9 +284,9 @@ function getStatusMessage(bar: AnnouncementBar) {
   </div>
 
   <div style={{ display: "flex", gap: 8 }}>
-    <a href="/app/onboarding" style={{ display: "inline-block", background: "#f3f4f6", color: "#374151", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: 14, lineHeight: "20px" }}>
+    <button onClick={() => shopify.navigate("/app/onboarding")} style={{ background: "#f3f4f6", color: "#374151", padding: "8px 16px", borderRadius: "8px", border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14 }}>
       See Instructions
-    </a>
+    </button>
     <s-button variant="primary" onClick={addNew}>
       Add Announcement
     </s-button>
