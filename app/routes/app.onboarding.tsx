@@ -47,7 +47,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     }
   );
   const { redirect } = await import("react-router");
-  throw redirect("/app");
+  const url = new URL(request.url);
+  const host = url.searchParams.get("host");
+  throw redirect(`/app?host=${host}`);
 };
 
 export default function Onboarding() {
