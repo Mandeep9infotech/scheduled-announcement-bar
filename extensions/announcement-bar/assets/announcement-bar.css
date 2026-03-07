@@ -1,0 +1,6 @@
+.shopify-app-block[data-block-handle="announcement-bar"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
