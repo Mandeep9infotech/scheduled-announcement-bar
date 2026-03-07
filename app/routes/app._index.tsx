@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { useFetcher, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import type { AnnouncementBar } from "../types/announcement";
@@ -261,7 +262,6 @@ function getStatusMessage(bar: AnnouncementBar) {
   ========================================================= */
   if (mode === "list") {
     return (
-	
       <s-page heading="Announcement Bars">
         <div style={headerStyle}>
   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -283,15 +283,15 @@ function getStatusMessage(bar: AnnouncementBar) {
     )}
   </div>
 
-  <s-button variant="primary" onClick={addNew}>
-    Add Announcement
-  </s-button>
-   <s-button variant="primary" onClick={addNew}>
-    See Instructions
-  </s-button>
+  <div style={{ display: "flex", gap: 8 }}>
+    <a href="/app/onboarding" style={{ display: "inline-block", background: "#f3f4f6", color: "#374151", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: 14, lineHeight: "20px" }}>
+      See Instructions
+    </a>
+    <s-button variant="primary" onClick={addNew}>
+      Add Announcement
+    </s-button>
+  </div>
 </div>
-
-
         {bars.length === 0 && (
           <div style={{ opacity: 0.6 }}></div>
         )}

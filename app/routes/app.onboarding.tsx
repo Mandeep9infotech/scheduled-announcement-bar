@@ -38,9 +38,12 @@ export default function Onboarding() {
 
       <div style={{ marginTop: "32px", paddingTop: "24px", borderTop: "1px solid #e5e7eb" }}>
         <p style={{ color: "#6b7280", fontSize: "14px" }}>Once you have added the block, start creating announcements:</p>
-        <a href="/app" style={{ display: "inline-block", background: "#008060", color: "#fff", padding: "12px 24px", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", fontSize: "14px" }}>
-          Add Announcements
-        </a>
+       <button
+  onClick={() => shopify.navigate("/app")}
+  style={{ display: "inline-block", background: "#008060", color: "#fff", padding: "12px 24px", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", fontSize: "14px", border: "none", cursor: "pointer" }}
+>
+  Add Announcements
+</button>
       </div>
     </div>
   );
