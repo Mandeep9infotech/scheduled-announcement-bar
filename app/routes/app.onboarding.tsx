@@ -1,6 +1,7 @@
 ﻿import { useEffect } from "react";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
-import { useLoaderData, useFetcher, useNavigate } from "react-router";
+import { useLoaderData, useFetcher } from "react-router";
+import { useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -51,11 +52,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export default function Onboarding() {
   const { shop, hasData } = useLoaderData<typeof loader>();
   const fetcher = useFetcher();
-  const navigate = useNavigate();
+  const shopify = useAppBridge();
 
   useEffect(() => {
     if (fetcher.data?.success) {
-      navigate("/app");
+      shopify.navigate("/app");
     }
   }, [fetcher.data]);
 
