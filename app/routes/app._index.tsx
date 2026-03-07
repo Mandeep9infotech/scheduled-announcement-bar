@@ -261,24 +261,7 @@ function getStatusMessage(bar: AnnouncementBar) {
   ========================================================= */
   if (mode === "list") {
     return (
-	<div style={headerStyle}>
-  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-    <h2 style={{ margin: 0 }}>All Announcements</h2>
-    {hasChanges && (
-      <span style={{ background: "#fef3c7", color: "#92400e", padding: "4px 10px", borderRadius: 20, fontSize: 12, fontWeight: 600 }}>
-        Unsaved changes
-      </span>
-    )}
-  </div>
-  <div style={{ display: "flex", gap: 8 }}>
-    <a href="/app/onboarding" style={{ display: "inline-block", background: "#f3f4f6", color: "#374151", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: 14 }}>
-      Setup Instructions
-    </a>
-    <s-button variant="primary" onClick={addNew}>
-      Add Announcement
-    </s-button>
-  </div>
-</div>
+	
       <s-page heading="Announcement Bars">
         <div style={headerStyle}>
   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -302,6 +285,9 @@ function getStatusMessage(bar: AnnouncementBar) {
 
   <s-button variant="primary" onClick={addNew}>
     Add Announcement
+  </s-button>
+   <s-button variant="primary" onClick={addNew}>
+    See Instructions
   </s-button>
 </div>
 
