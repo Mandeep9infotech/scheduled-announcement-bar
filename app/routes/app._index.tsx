@@ -25,11 +25,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const json = await response.json();
   const raw = json.data.shop.metafield?.value;
 
-  if (!raw) {
-    const { redirect } = await import("react-router");
-    const url = new URL(request.url);
-    throw redirect(`/app/onboarding?${url.searchParams.toString()}`);
-  }
+  
 
   return {
     bars: parseBars(raw),
@@ -265,6 +261,24 @@ function getStatusMessage(bar: AnnouncementBar) {
   ========================================================= */
   if (mode === "list") {
     return (
+	<div style={headerStyle}>
+  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+    <h2 style={{ margin: 0 }}>All Announcements</h2>
+    {hasChanges && (
+      <span style={{ background: "#fef3c7", color: "#92400e", padding: "4px 10px", borderRadius: 20, fontSize: 12, fontWeight: 600 }}>
+        Unsaved changes
+      </span>
+    )}
+  </div>
+  <div style={{ display: "flex", gap: 8 }}>
+    <a href="/app/onboarding" style={{ display: "inline-block", background: "#f3f4f6", color: "#374151", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: 14 }}>
+      Setup Instructions
+    </a>
+    <s-button variant="primary" onClick={addNew}>
+      Add Announcement
+    </s-button>
+  </div>
+</div>
       <s-page heading="Announcement Bars">
         <div style={headerStyle}>
   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
