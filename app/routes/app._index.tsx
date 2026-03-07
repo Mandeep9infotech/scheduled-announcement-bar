@@ -476,6 +476,7 @@ const inputStyle = {
   borderRadius: "6px",
   border: "1px solid #ccc",
   marginTop: "4px",
+  box-sizing: "border-box",
 };
 
 const dateStyle = {
