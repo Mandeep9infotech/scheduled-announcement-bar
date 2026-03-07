@@ -1,5 +1,4 @@
-﻿@'
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+﻿import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { useLoaderData, useFetcher } from "react-router";
 import { authenticate } from "../shopify.server";
 
@@ -71,4 +70,3 @@ export default function Onboarding() {
     </div>
   );
 }
-'@ | Out-File -FilePath "app\routes\app.onboarding.tsx" -Encoding UTF8
